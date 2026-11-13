@@ -1,0 +1,11 @@
+@ModasMunequita.API_HostAddress = http://localhost:5051
+
+GET {{ModasMunequita.API_HostAddress}}/openapi/v1.json
+Accept: application/json
+
+###
+
+GET {{ModasMunequita.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
