@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-pastel: #fdf4fc;
+  --bg-lila: #f6d2f3;
+  --rosa-vestido: #fa5c98;
+  --fucsia-lazo: #c71f66;
+  --marron-pelo: #4e3222;
+  --rojo-zapatos: #9e1111;
+  --blanco: #ffffff;
+  --sombra-suave: 0 8px 24px rgba(199, 31, 102, 0.08);
+  --radio-card: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-pastel);
+  color: var(--marron-pelo);
+  font-family: 'Quicksand', sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3, .brand-title {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--marron-pelo);
+}
+
+.btn-primario {
+  background-color: var(--rosa-vestido);
+  color: var(--blanco);
+  border: 2px solid var(--fucsia-lazo);
+  border-radius: 50px;
+  padding: 10px 22px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.btn-primario:hover {
+  background-color: var(--fucsia-lazo);
+  transform: translateY(-2px);
+}
+
+.fondo-lunares {
+  background: linear-gradient(135deg, #fff5fb 0%, #f6d2f3 50%, #ffd6e8 100%);
+}
