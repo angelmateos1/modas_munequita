@@ -1,0 +1,129 @@
+<section class="panel-container">
+  <div class="cabecera">
+    <div>
+      <h1>Panel de Dita</h1>
+      <p>Control de clientas, días de cobro y abonos</p>
+    </div>
+
+    <div class="filtros">
+      <input
+        type="number"
+        [(ngModel)]="filtroDia"
+        min="1"
+        max="31"
+        placeholder="Día (1-31)"
+        class="input-dia"
+      />
+      <button class="btn-primario" (click)="cargarClientes()">Filtrar</button>
+      <button class="btn-secundario" (click)="filtrarHoy()">Cobros de hoy</button>
+      <button class="btn-secundario" (click)="limpiarFiltro()">Ver todas</button>
+    </div>
+  </div>
+
+  <div class="layout-dita">
+    <!-- Lista de clientas -->
+    <div class="lista-clientes">
+      @if (clientes().length === 0) {
+        <p class="vacio">No hay clientas para este filtro.</p>
+      } @else {
+        @for (cliente of clientes(); track cliente.id) {
+          <div
+            class="item-cliente"
+            [class.activo]="clienteSeleccionado()?.id === cliente.id"
+            (click)="seleccionarCliente(cliente.id)"
+          >
+            <div>
+              <h3>{{ cliente.nombreCompleto }}</h3>
+              <span class="sub">Día de cobro: {{ cliente.diaCobroDita }}</span>
+            </div>
+            <span class="deuda-badge" [class.sin-deuda]="cliente.deudaActual === 0">
+              {{ cliente.deudaActual | currency:'EUR':'symbol' }}
+            </span>
+          </div>
+        }
+      }
+    </div>
+
+    <!-- Ficha y pagos de la clienta seleccionada -->
+    @if (clienteSeleccionado(); as c) {
+      <div class="ficha-cliente">
+        @if (mensaje()) {
+          <div class="alerta-ok">{{ mensaje() }}</div>
+        }
+
+        <h2>{{ c.nombreCompleto }}</h2>
+        <p class="email">{{ c.email }}</p>
+
+        <form class="form-editar" (ngSubmit)="guardarCambiosCliente()">
+          <div class="grid-2">
+            <label>
+              Teléfono
+              <input type="text" [(ngModel)]="c.telefono" name="telefono" />
+            </label>
+            <label>
+              Día de cobro (1-31)
+              <input type="number" [(ngModel)]="c.diaCobroDita" name="diaCobroDita" min="1" max="31" />
+            </label>
+            <label>
+              Deuda actual (€)
+              <input type="number" [(ngModel)]="c.deudaActual" name="deudaActual" step="0.01" />
+            </label>
+            <label class="check-label">
+              <input type="checkbox" [(ngModel)]="c.esClienteActivo" name="esClienteActivo" />
+              Clienta activa
+            </label>
+          </div>
+          <label>
+            Notas internas
+            <textarea [(ngModel)]="c.notasAdmin" name="notasAdmin" rows="2"></textarea>
+          </label>
+          <button type="submit" class="btn-primario">Guardar cambios</button>
+        </form>
+
+        <hr class="separador" />
+
+        <h3>Registrar nuevo abono</h3>
+        <form class="form-pago" (ngSubmit)="registrarAbono()">
+          <input
+            type="number"
+            [(ngModel)]="nuevoPago.abonado"
+            name="abonado"
+            step="0.01"
+            min="0.01"
+            placeholder="Importe (€)"
+            required
+          />
+          <input
+            type="text"
+            [(ngModel)]="nuevoPago.concepto"
+            name="concepto"
+            placeholder="Concepto (ej. Efectivo)"
+            required
+          />
+          <button type="submit" class="btn-primario">Abonar</button>
+        </form>
+
+        <h3>Historial de pagos</h3>
+        @if (c.historialPagos.length === 0) {
+          <p class="sub">Aún no hay pagos registrados.</p>
+        } @else {
+          <ul class="lista-pagos">
+            @for (pago of c.historialPagos; track pago.id) {
+              <li>
+                <div>
+                  <strong>{{ pago.concepto }}</strong>
+                  <span class="fecha">{{ pago.fechaPago | date:'dd/MM/yyyy HH:mm' }}</span>
+                </div>
+                <span class="importe-pago">+ {{ pago.abonado | currency:'EUR':'symbol' }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    } @else {
+      <div class="ficha-vacia">
+        <p>Selecciona una clienta de la lista para gestionar su dita y registrar pagos.</p>
+      </div>
+    }
+  </div>
+</section>

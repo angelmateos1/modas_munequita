@@ -5,10 +5,14 @@
   </a>
 
   <nav class="nav-links">
-    <a routerLink="/">Catálogo</a>
+    <a routerLink="/" routerLinkActive="nav-activo" [routerLinkActiveOptions]="{ exact: true }">
+      Catálogo
+    </a>
 
     @if (authService.esAdmin()) {
-      <a routerLink="/admin/clientes" class="badge-admin">Panel Dita</a>
+      <a routerLink="/admin/clientes" routerLinkActive="nav-activo">
+        Panel Dita
+      </a>
     }
 
     @if (authService.usuarioActual(); as user) {

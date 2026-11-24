@@ -1,0 +1,201 @@
+.panel-container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filtros {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.input-dia {
+  width: 110px;
+  padding: 9px 12px;
+  border: 2px solid var(--bg-lila);
+  border-radius: 50px;
+  font-family: inherit;
+}
+
+.btn-secundario {
+  background: var(--blanco);
+  border: 2px solid var(--marron-pelo);
+  color: var(--marron-pelo);
+  border-radius: 50px;
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.layout-dita {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 820px) {
+  .layout-dita {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lista-clientes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-cliente {
+  background: var(--blanco);
+  padding: 16px 20px;
+  border-radius: var(--radio-card);
+  border: 2px solid var(--bg-lila);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.item-cliente:hover,
+.item-cliente.activo {
+  border-color: var(--rosa-vestido);
+  transform: translateY(-2px);
+}
+
+.sub {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.deuda-badge {
+  background: #fde8e8;
+  color: var(--rojo-zapatos);
+  font-family: 'Fredoka', sans-serif;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.deuda-badge.sin-deuda {
+  background: #e6f7ed;
+  color: #1d7a46;
+}
+
+.ficha-cliente,
+.ficha-vacia {
+  background: var(--blanco);
+  padding: 28px;
+  border-radius: var(--radio-card);
+  border: 2px solid var(--bg-lila);
+  box-shadow: var(--sombra-suave);
+}
+
+.alerta-ok {
+  background: #e6f7ed;
+  color: #1d7a46;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.email {
+  margin-bottom: 18px;
+  font-size: 0.9rem;
+}
+
+.form-editar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-editar label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.form-editar input,
+.form-editar textarea,
+.form-pago input {
+  padding: 9px 12px;
+  border: 2px solid var(--bg-lila);
+  border-radius: 12px;
+  font-family: inherit;
+}
+
+.check-label {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px !important;
+  margin-top: 20px;
+}
+
+.separador {
+  border: none;
+  border-top: 2px solid var(--bg-lila);
+  margin: 24px 0;
+}
+
+.form-pago {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0 24px;
+}
+
+.form-pago input {
+  flex: 1;
+  min-width: 140px;
+}
+
+.lista-pagos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.lista-pagos li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--bg-pastel);
+  border-radius: 12px;
+}
+
+.fecha {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.importe-pago {
+  font-family: 'Fredoka', sans-serif;
+  color: #1d7a46;
+  font-size: 1.05rem;
+}

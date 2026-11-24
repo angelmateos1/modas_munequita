@@ -40,11 +40,18 @@
   font-weight: 700;
 }
 
-.badge-admin {
-  background-color: var(--bg-lila);
-  color: var(--fucsia-lazo) !important;
+.nav-links a {
+  text-decoration: none;
+  color: var(--marron-pelo);
+  font-weight: 700;
   padding: 6px 14px;
   border-radius: 50px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a.nav-activo {
+  background-color: var(--bg-lila);
+  color: var(--fucsia-lazo);
 }
 
 .btn-secundario {
