@@ -1,0 +1,63 @@
+<section class="catalogo-container">
+  <div class="cabecera">
+    <div>
+      <h1>Nuestro Catálogo</h1>
+      <p>Descubre las novedades de Modas Muñequita</p>
+    </div>
+
+    @if (authService.esAdmin()) {
+      <button class="btn-primario" (click)="mostrarFormulario.set(!mostrarFormulario())">
+        {{ mostrarFormulario() ? 'Cancelar' : '+ Añadir Prenda' }}
+      </button>
+    }
+  </div>
+
+  @if (mostrarFormulario() && authService.esAdmin()) {
+    <form class="form-nueva-prenda" (ngSubmit)="guardarPrenda()">
+      <h3>Nueva Prenda</h3>
+      <div class="grid-form">
+        <input type="text" [(ngModel)]="nuevaPrenda.nombre" name="nombre" placeholder="Nombre (ej. Blusa Floral)" required />
+        <input type="text" [(ngModel)]="nuevaPrenda.categoria" name="categoria" placeholder="Categoría (ej. Vestidos)" required />
+        <input type="text" [(ngModel)]="nuevaPrenda.talla" name="talla" placeholder="Talla (S, M, L, XL)" required />
+        <input type="number" [(ngModel)]="nuevaPrenda.precio" name="precio" placeholder="Precio (€)" step="0.01" required />
+        <input type="number" [(ngModel)]="nuevaPrenda.stock" name="stock" placeholder="Stock" required />
+        <input type="text" [(ngModel)]="nuevaPrenda.imagenUrl" name="imagenUrl" placeholder="URL de imagen (opcional)" />
+      </div>
+      <textarea [(ngModel)]="nuevaPrenda.descripcion" name="descripcion" placeholder="Descripción corta..." rows="2"></textarea>
+      <button type="submit" class="btn-primario">Guardar en catálogo</button>
+    </form>
+  }
+
+  @if (prendas().length === 0) {
+    <p class="vacio">Aún no hay prendas en el catálogo.</p>
+  } @else {
+    <div class="grid-prendas">
+      @for (prenda of prendas(); track prenda.id) {
+        <article class="card-prenda">
+          <div class="img-box">
+            <img [src]="prenda.imagenUrl || 'logo.png'" [alt]="prenda.nombre" />
+            <span class="badge-categoria">{{ prenda.categoria }}</span>
+          </div>
+
+          <div class="card-body">
+            <h3>{{ prenda.nombre }}</h3>
+            <p class="descripcion">{{ prenda.descripcion }}</p>
+
+            <div class="detalles">
+              <span class="talla">Talla: <strong>{{ prenda.talla }}</strong></span>
+              <span class="stock">Stock: {{ prenda.stock }}</span>
+            </div>
+
+            <div class="card-footer">
+              <span class="precio">{{ prenda.precio | currency:'EUR':'symbol' }}</span>
+
+              @if (authService.esAdmin()) {
+                <button class="btn-borrar" (click)="borrarPrenda(prenda.id)">Eliminar</button>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>
