@@ -1,0 +1,84 @@
+.login-wrapper {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.login-card {
+  background: var(--blanco);
+  padding: 36px;
+  border-radius: var(--radio-card);
+  box-shadow: var(--sombra-suave);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: 2px solid var(--bg-lila);
+}
+
+.login-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid var(--rosa-vestido);
+  margin-bottom: 12px;
+}
+
+.subtitulo {
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+.campo {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.campo label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.campo input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid var(--bg-lila);
+  border-radius: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+.campo input:focus {
+  border-color: var(--rosa-vestido);
+}
+
+.mensaje-error {
+  color: var(--rojo-zapatos);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.mensaje-exito {
+  color: #1d7a46;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.enlace-pie {
+  margin-top: 18px;
+  font-size: 0.9rem;
+}
+
+.enlace-pie a {
+  color: var(--fucsia-lazo);
+  font-weight: 700;
+  text-decoration: none;
+}

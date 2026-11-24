@@ -1,0 +1,38 @@
+<div class="login-wrapper fondo-lunares">
+  <div class="login-card">
+    <img src="logo.png" alt="Logo Modas Muñequita" class="login-logo" />
+    <h2>Crear Cuenta</h2>
+    <p class="subtitulo">Únete a Modas Muñequita</p>
+
+    <form (ngSubmit)="registrarse()">
+      <div class="campo">
+        <label>Nombre completo</label>
+        <input type="text" [(ngModel)]="nombreCompleto" name="nombreCompleto" required placeholder="María García" />
+      </div>
+
+      <div class="campo">
+        <label>Correo electrónico</label>
+        <input type="email" [(ngModel)]="email" name="email" required placeholder="tu@correo.com" />
+      </div>
+
+      <div class="campo">
+        <label>Contraseña</label>
+        <input type="password" [(ngModel)]="password" name="password" required placeholder="Mín. 6 caracteres (Ej. Hola123!)" />
+      </div>
+
+      @if (error()) {
+        <p class="mensaje-error">{{ error() }}</p>
+      }
+
+      @if (exito()) {
+        <p class="mensaje-exito">{{ exito() }}</p>
+      }
+
+      <button type="submit" class="btn-primario btn-full">Registrarme</button>
+    </form>
+
+    <p class="enlace-pie">
+      ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión aquí</a>
+    </p>
+  </div>
+</div>

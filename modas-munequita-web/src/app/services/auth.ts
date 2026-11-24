@@ -28,6 +28,10 @@ export class AuthService {
     );
   }
 
+  register(datos: { nombreCompleto: string; email: string; password: string }) {
+    return this.http.post(`${this.apiUrl}/register`, datos);
+  }
+
   logout() {
     localStorage.removeItem('usuario_munequita');
     this.usuarioActual.set(null);
