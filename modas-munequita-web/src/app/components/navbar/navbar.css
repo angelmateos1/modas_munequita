@@ -63,3 +63,16 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+.nav-izquierda {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.nav-derecha {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}

@@ -1,25 +1,39 @@
 <header class="navbar">
-  <a routerLink="/" class="marca">
-    <img src="logo.png" alt="Modas Muñequita" class="logo-img" />
-    <span class="brand-title">Modas Muñequita</span>
-  </a>
-
-  <nav class="nav-links">
-    <a routerLink="/" routerLinkActive="nav-activo" [routerLinkActiveOptions]="{ exact: true }">
-      Catálogo
+  <div class="nav-izquierda">
+    <a routerLink="/" class="marca">
+      <img src="logo.png" alt="Modas Muñequita" class="logo-img" />
+      <span class="brand-title">Modas Muñequita</span>
     </a>
 
-    @if (authService.esAdmin()) {
-      <a routerLink="/admin/clientes" routerLinkActive="nav-activo">
-        Panel Dita
+    <nav class="nav-links">
+      <a routerLink="/" routerLinkActive="nav-activo" [routerLinkActiveOptions]="{ exact: true }">
+        Catálogo
       </a>
-    }
 
+      @if (authService.esAdmin()) {
+        <a routerLink="/admin/clientes" routerLinkActive="nav-activo">
+          Panel Dita
+        </a>
+      } @else if (authService.usuarioActual()) {
+        <a routerLink="/mi-dita" routerLinkActive="nav-activo">
+          Mi Dita
+        </a>
+      }
+
+      @if (authService.usuarioActual()) {
+        <a routerLink="/mi-perfil" routerLinkActive="nav-activo">
+          Mi Perfil
+        </a>
+      }
+    </nav>
+  </div>
+
+  <div class="nav-derecha">
     @if (authService.usuarioActual(); as user) {
       <span class="saludo">Hola, {{ user.nombreCompleto }}</span>
       <button (click)="cerrarSesion()" class="btn-secundario">Salir</button>
     } @else {
       <a routerLink="/login" class="btn-primario">Entrar</a>
     }
-  </nav>
+  </div>
 </header>

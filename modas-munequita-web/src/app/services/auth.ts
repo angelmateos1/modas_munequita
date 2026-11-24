@@ -49,4 +49,13 @@ export class AuthService {
     const data = localStorage.getItem('usuario_munequita');
     return data ? JSON.parse(data) : null;
   }
+
+  actualizarDatosUsuario(nombreCompleto: string, email: string) {
+    const actual = this.usuarioActual();
+    if (!actual) return;
+
+    const actualizado = { ...actual, nombreCompleto, email };
+    this.usuarioActual.set(actualizado);
+    localStorage.setItem('usuario', JSON.stringify(actualizado));
+  }
 }

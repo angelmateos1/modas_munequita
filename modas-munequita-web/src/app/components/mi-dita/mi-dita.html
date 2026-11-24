@@ -1,0 +1,48 @@
+<section class="mi-dita-container">
+  @if (cargando()) {
+    <p class="estado-texto">Cargando tu información...</p>
+  } @else if (datosDita(); as dita) {
+    <div class="cabecera">
+      <h1>Mi Dita</h1>
+      <p>Hola, <strong>{{ dita.nombreCompleto }}</strong>. Aquí tienes el resumen de tu cuenta.</p>
+    </div>
+
+    <div class="resumen-cards">
+      <div class="stat-card" [class.al-dia]="dita.deudaActual === 0">
+        <span class="stat-label">Saldo pendiente</span>
+        <span class="stat-valor">
+          {{ dita.deudaActual | currency:'EUR':'symbol' }}
+        </span>
+        <span class="stat-nota">
+          {{ dita.deudaActual === 0 ? '¡Estás al día con tus pagos!' : 'Pendiente de abonar' }}
+        </span>
+      </div>
+
+      <div class="stat-card">
+        <span class="stat-label">Tu día de cobro</span>
+        <span class="stat-valor">Día {{ dita.diaCobroDita }}</span>
+        <span class="stat-nota">De cada mes</span>
+      </div>
+    </div>
+
+    <div class="historial-box">
+      <h2>Historial de abonos</h2>
+
+      @if (dita.historialPagos.length === 0) {
+        <p class="vacio">Todavía no tienes abonos registrados en tu historial.</p>
+      } @else {
+        <ul class="lista-pagos">
+          @for (pago of dita.historialPagos; track pago.id) {
+            <li>
+              <div>
+                <strong>{{ pago.concepto }}</strong>
+                <span class="fecha">{{ pago.fechaPago | date:'dd/MM/yyyy HH:mm' }}</span>
+              </div>
+              <span class="importe-pago">+ {{ pago.abonado | currency:'EUR':'symbol' }}</span>
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  }
+</section>

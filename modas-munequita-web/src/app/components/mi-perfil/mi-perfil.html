@@ -1,0 +1,51 @@
+<section class="perfil-container">
+  <div class="perfil-card">
+    <h1>Mi Perfil</h1>
+    <p class="subtitulo">Actualiza tus datos personales o tu contraseña</p>
+
+    @if (cargando()) {
+      <p>Cargando datos...</p>
+    } @else {
+      @if (mensajeOk()) {
+        <div class="alerta-ok">{{ mensajeOk() }}</div>
+      }
+
+      @if (mensajeError()) {
+        <div class="alerta-error">{{ mensajeError() }}</div>
+      }
+
+      <form (ngSubmit)="guardarPerfil()" class="form-perfil">
+        <label>
+          Nombre completo
+          <input type="text" [(ngModel)]="perfil.nombreCompleto" name="nombreCompleto" required />
+        </label>
+
+        <label>
+          Correo electrónico
+          <input type="email" [(ngModel)]="perfil.email" name="email" required />
+        </label>
+
+        <label>
+          Teléfono
+          <input type="tel" [(ngModel)]="perfil.telefono" name="telefono" placeholder="Ej. 600 123 456" />
+        </label>
+
+        <hr class="separador" />
+
+        <h3>Cambiar contraseña <span class="opcional">(opcional)</span></h3>
+
+        <label>
+          Contraseña actual
+          <input type="password" [(ngModel)]="perfil.passwordActual" name="passwordActual" placeholder="Déjalo vacío si no quieres cambiarla" />
+        </label>
+
+        <label>
+          Nueva contraseña
+          <input type="password" [(ngModel)]="perfil.nuevaPassword" name="nuevaPassword" placeholder="Mín. 6 caracteres, mayúscula, número y símbolo" />
+        </label>
+
+        <button type="submit" class="btn-primario">Guardar cambios</button>
+      </form>
+    }
+  </div>
+</section>

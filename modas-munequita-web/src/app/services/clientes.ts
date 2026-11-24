@@ -43,6 +43,11 @@ export interface RegistrarPago {
 export class ClientesService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:5051/api/admin/clientes';
+  private apiClienteUrl = 'http://localhost:5051/api/clientes';
+
+  obtenerMiDita() {
+    return this.http.get<ClienteDetalle>(`${this.apiClienteUrl}/mi-dita`);
+  }
 
   obtenerClientes(diaCobro?: number) {
     let params = new HttpParams();
@@ -63,4 +68,27 @@ export class ClientesService {
   registrarPago(id: string, pago: RegistrarPago) {
     return this.http.post<PagoDita>(`${this.apiUrl}/${id}/pagos`, pago);
   }
+
+  obtenerPerfil() {
+    return this.http.get<PerfilUsuario>(`${this.apiClienteUrl}/perfil`);
+  }
+
+  actualizarPerfil(datos: ActualizarPerfil) {
+    return this.http.put<PerfilUsuario>(`${this.apiClienteUrl}/perfil`, datos);
+  }
+}
+
+export interface PerfilUsuario {
+  id: string;
+  nombreCompleto: string;
+  email: string;
+  telefono: string;
+}
+
+export interface ActualizarPerfil {
+  nombreCompleto: string;
+  email: string;
+  telefono: string;
+  passwordActual?: string;
+  nuevaPassword?: string;
 }

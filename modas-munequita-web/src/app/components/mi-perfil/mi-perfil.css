@@ -1,0 +1,74 @@
+.perfil-container {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.perfil-card {
+  background: var(--blanco);
+  padding: 32px;
+  border-radius: var(--radio-card);
+  border: 2px solid var(--bg-lila);
+  box-shadow: var(--sombra-suave);
+}
+
+.subtitulo {
+  margin-bottom: 22px;
+  font-size: 0.95rem;
+}
+
+.form-perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-perfil label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.form-perfil input {
+  padding: 10px 14px;
+  border: 2px solid var(--bg-lila);
+  border-radius: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+.form-perfil input:focus {
+  border-color: var(--rosa-vestido);
+}
+
+.separador {
+  border: none;
+  border-top: 2px solid var(--bg-lila);
+  margin: 8px 0;
+}
+
+.opcional {
+  font-size: 0.85rem;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.alerta-ok {
+  background: #e6f7ed;
+  color: #1d7a46;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.alerta-error {
+  background: #fde8e8;
+  color: var(--rojo-zapatos);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
